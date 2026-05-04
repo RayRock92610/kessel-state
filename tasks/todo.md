@@ -18,3 +18,4 @@ Stress-test kfix.py with simulated security vulnerability logs and memory panics
 - [x] Deploy Go Indexer
 - [x] Verify SHA-256 integrity
 - [x] Automate CRITICAL file detection
+- [x] Implement 30-day operational log rotation
