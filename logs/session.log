@@ -1,5 +1,1 @@
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-    print(syntax_error_here)
-          ^^^^^^^^^^^^^^^^^
-NameError: name 'syntax_error_here' is not defined
+/data/data/com.termux/files/home/kessel_runner.sh: line 14: scenario-war-room: command not found
