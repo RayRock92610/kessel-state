@@ -1,0 +1,157 @@
+{
+  "generated": "2026-05-13T16:56:03.075359",
+  "artifacts": [
+    {
+      "name": "sop_sync.sh",
+      "path": "~/kesselflow/scripts/sop_sync.sh",
+      "status": "OK",
+      "size": "1KB",
+      "age": "1h ago",
+      "hash": "8957d661f54a"
+    },
+    {
+      "name": "orchestrator.py",
+      "path": "~/kesselflow/scripts/orchestrator.py",
+      "status": "OK",
+      "size": "2KB",
+      "age": "1h ago",
+      "hash": "a7171f974f70"
+    },
+    {
+      "name": "workflow_tree.json",
+      "path": "~/kesselflow/scripts/workflow_tree.json",
+      "status": "OK",
+      "size": "7KB",
+      "age": "30m ago",
+      "hash": "6d6de8084292"
+    },
+    {
+      "name": "kf_maintain.py",
+      "path": "~/kesselflow/kf_maintain.py",
+      "status": "OK",
+      "size": "2KB",
+      "age": "1h ago",
+      "hash": "4c6c647d390e"
+    },
+    {
+      "name": "handoff.json",
+      "path": "~/kesselflow/handoff.json",
+      "status": "OK",
+      "size": "2KB",
+      "age": "1h ago",
+      "hash": "05f4d64b9306"
+    },
+    {
+      "name": "kessel_learn_audit",
+      "path": "~/kesselflow/kessel_learn_audit.py",
+      "status": "OK",
+      "size": "1KB",
+      "age": "24m ago",
+      "hash": "87c46be30db5"
+    },
+    {
+      "name": "ARCHITECTURE.md",
+      "path": "~/kesselflow/ARCHITECTURE.md",
+      "status": "OK",
+      "size": "5KB",
+      "age": "29m ago",
+      "hash": "728403373df6"
+    },
+    {
+      "name": "CLAUDE.md",
+      "path": "~/kesselflow/CLAUDE.md",
+      "status": "OK",
+      "size": "1KB",
+      "age": "28m ago",
+      "hash": "871217e51c3d"
+    },
+    {
+      "name": "kessel_state_exxact",
+      "path": "~/kesselflow/kessel_state_exxact.json",
+      "status": "OK",
+      "size": "993B",
+      "age": "10h ago",
+      "hash": "5c19e3c51652"
+    },
+    {
+      "name": "current_state",
+      "path": "~/kesselflow/current_state.json",
+      "status": "OK",
+      "size": "521B",
+      "age": "10h ago",
+      "hash": "3b92562e657c"
+    },
+    {
+      "name": "master_state",
+      "path": "/sdcard/boneyard/KesselFlow/SOPs/master_state.json",
+      "status": "OK",
+      "size": "521B",
+      "age": "1h ago",
+      "hash": "3b92562e657c"
+    },
+    {
+      "name": "kessel_state symlink",
+      "path": "~/.kessel_state.json",
+      "status": "OK",
+      "size": "521B",
+      "age": "10h ago",
+      "hash": "3b92562e657c"
+    },
+    {
+      "name": "audit_log",
+      "path": "~/kesselflow/scripts/tasks/audit_log.json",
+      "status": "OK",
+      "size": "960B",
+      "age": "28m ago",
+      "hash": "957ba5d58a46"
+    },
+    {
+      "name": "kf_maintain.log",
+      "path": "~/kesselflow/logs/kf_maintain.log",
+      "status": "OK",
+      "size": "6KB",
+      "age": "28m ago",
+      "hash": "edd272289f52"
+    },
+    {
+      "name": "sop_delta.log",
+      "path": "/sdcard/boneyard/logs/sop_delta.log",
+      "status": "OK",
+      "size": "598B",
+      "age": "28m ago",
+      "hash": "d3df2a6129cc"
+    },
+    {
+      "name": "ares.heartbeat",
+      "path": "~/.locks/ares.heartbeat",
+      "status": "OK",
+      "size": "16B",
+      "age": "28m ago",
+      "hash": "14ec2a6ad0b3"
+    },
+    {
+      "name": "fenris.heartbeat",
+      "path": "~/.locks/fenris.heartbeat",
+      "status": "OK",
+      "size": "16B",
+      "age": "28m ago",
+      "hash": "14ec2a6ad0b3"
+    },
+    {
+      "name": "cerberus.heartbeat",
+      "path": "~/.locks/cerberus.heartbeat",
+      "status": "OK",
+      "size": "16B",
+      "age": "28m ago",
+      "hash": "14ec2a6ad0b3"
+    },
+    {
+      "name": "inquisitor.heartbeat",
+      "path": "~/.locks/inquisitor.heartbeat",
+      "status": "OK",
+      "size": "16B",
+      "age": "28m ago",
+      "hash": "14ec2a6ad0b3"
+    }
+  ]
+}

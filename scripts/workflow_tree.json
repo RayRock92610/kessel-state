@@ -1,0 +1,301 @@
+{
+  "tree_version": "1.0",
+  "updated": "2026-05-13",
+  "root": "KesselFlow",
+  "pillars": [
+    {
+      "id": "AGENTS",
+      "nodes": [
+        {
+          "name": "ARES",
+          "type": "agent",
+          "log": "~/kesselflow/logs/ares.log",
+          "liveness": "unknown",
+          "heartbeat_file": "~/.locks/ares.heartbeat"
+        },
+        {
+          "name": "FENRIS",
+          "type": "agent",
+          "log": "~/kesselflow/logs/fenris.log",
+          "liveness": "unknown",
+          "heartbeat_file": "~/.locks/fenris.heartbeat"
+        },
+        {
+          "name": "CERBERUS",
+          "type": "agent",
+          "log": "~/kesselflow/logs/cerberus.log",
+          "liveness": "unknown",
+          "heartbeat_file": "~/.locks/cerberus.heartbeat"
+        },
+        {
+          "name": "INQUISITOR",
+          "type": "agent",
+          "log": "~/kesselflow/logs/inquisitor.log",
+          "role": "json_logger",
+          "output": "log.jsonl",
+          "liveness": "unknown",
+          "heartbeat_file": "~/.locks/inquisitor.heartbeat"
+        }
+      ]
+    },
+    {
+      "id": "BONEYARD",
+      "nodes": [
+        {
+          "name": "sop_sync",
+          "type": "script",
+          "path": "~/kesselflow/scripts/sop_sync.sh",
+          "schedule": "0 3 * * *",
+          "input": "~/kesselflow/current_state.json",
+          "output": "/sdcard/boneyard/KesselFlow/SOPs/master_state.json",
+          "delta_archive": "/sdcard/boneyard/KesselFlow/SOPs/history/"
+        },
+        {
+          "name": "BoneYard store",
+          "type": "storage",
+          "path": "/sdcard/boneyard/KesselFlow/SOPs/",
+          "log": "/sdcard/boneyard/logs/sop_delta.log"
+        }
+      ]
+    },
+    {
+      "id": "ORCHESTRATION",
+      "nodes": [
+        {
+          "name": "KesselOrchestratorV2",
+          "type": "pipeline",
+          "path": "~/kesselflow/scripts/orchestrator.py",
+          "components": [
+            "WhitelistGate",
+            "SearchCoordinator"
+          ],
+          "audit_output": "./tasks/audit_log.json"
+        },
+        {
+          "name": "kessel_learn",
+          "type": "learner",
+          "path": "~/kesselflow/kessel_learn.py",
+          "schedule": "nightly",
+          "input": "agent trace logs",
+          "output": "~/kesselflow/CLAUDE.md"
+        }
+      ]
+    },
+    {
+      "id": "STATE",
+      "nodes": [
+        {
+          "name": "current_state",
+          "type": "state_file",
+          "path": "~/kesselflow/current_state.json",
+          "symlink": "~/.kessel_state.json"
+        },
+        {
+          "name": "handoff",
+          "type": "continuity_doc",
+          "path": "~/kesselflow/handoff.json"
+        },
+        {
+          "name": "EXXACT-KF-2.0",
+          "type": "frozen_profile",
+          "path": "~/kesselflow/kessel_state_exxact.json",
+          "guard": "NO_POC/EXEC",
+          "review_date": "2027-05-12"
+        }
+      ]
+    },
+    {
+      "id": "SECURITY",
+      "nodes": [
+        {
+          "name": "WhitelistGate",
+          "type": "security_layer",
+          "model": "Positive Security Model",
+          "action": "TOKEN_OUT_OF_SCOPE replacement",
+          "telemetry": "./tasks/audit_log.json"
+        },
+        {
+          "name": "OPA auditor",
+          "type": "policy_engine",
+          "scope": "agent ops"
+        },
+        {
+          "name": "FROZEN_WEIGHTS",
+          "type": "protocol",
+          "guard": "LIFO_GATING + TRUTH_OR_FAILURE + SEMANTIC_DIFF"
+        }
+      ]
+    }
+  ],
+  "kf_commands": [
+    {
+      "name": "/devil",
+      "scope": "adversarial",
+      "description": "Stress-test KesselFlow config for failure modes, attack surface review, and devil's advocate architecture challenges.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "adversarial_audit",
+          "action": "Stress-test current KesselFlow config for failure modes"
+        },
+        {
+          "id": "2",
+          "label": "red_team",
+          "action": "Attack surface review on orchestrator/WhitelistGate"
+        },
+        {
+          "id": "3",
+          "label": "devils_advocate",
+          "action": "Argue against current architecture decisions"
+        }
+      ],
+      "registered": "2026-05-13",
+      "author": "RayRock92610"
+    },
+    {
+      "name": "/wiki",
+      "scope": "documentation",
+      "description": "Generate documentation, command registry, or architecture map from live KesselFlow state.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "generate_docs",
+          "action": "Full markdown wiki for KesselFlow"
+        },
+        {
+          "id": "2",
+          "label": "command_registry",
+          "action": "Document all registered slash commands"
+        },
+        {
+          "id": "3",
+          "label": "architecture_map",
+          "action": "Human-readable system overview from workflow_tree.json"
+        }
+      ],
+      "registered": "2026-05-13"
+    },
+    {
+      "name": "/10x",
+      "scope": "automation",
+      "description": "Productivity multiplier \u2014 automate all KF maintenance into a single master script.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "sprint_mode",
+          "action": "Identify next 10 highest-value KF improvements"
+        },
+        {
+          "id": "2",
+          "label": "automate_self",
+          "action": "Generate master maintenance script kf_maintain.py"
+        },
+        {
+          "id": "3",
+          "label": "compound_session",
+          "action": "Chain /scout + /devil + /godmode into one command"
+        }
+      ],
+      "registered": "2026-05-13"
+    },
+    {
+      "name": "/scout",
+      "scope": "reconnaissance",
+      "description": "Drift detection, system survey, and agent liveness scanning.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "system_survey",
+          "action": "Inventory all KesselFlow files, sizes, ages"
+        },
+        {
+          "id": "2",
+          "label": "drift_detection",
+          "action": "Compare current_state.json against master_state.json"
+        },
+        {
+          "id": "3",
+          "label": "dead_process_scan",
+          "action": "Check agent heartbeat files for liveness"
+        }
+      ],
+      "registered": "2026-05-13"
+    },
+    {
+      "name": "/godmode",
+      "scope": "activation",
+      "description": "Full system activation \u2014 all agents, monitors, sync, and heartbeats in sequence.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "full_activation",
+          "action": "Start all agents + monitors + sop_sync in sequence"
+        },
+        {
+          "id": "2",
+          "label": "system_hardening",
+          "action": "Run all /devil fixes + /scout drift check"
+        },
+        {
+          "id": "3",
+          "label": "emperor_mode",
+          "action": "Generate master control script wrapping all KF commands"
+        }
+      ],
+      "registered": "2026-05-13"
+    },
+    {
+      "name": "/ooda",
+      "scope": "strategy",
+      "description": "Observe-Orient-Decide-Act cycle against current KesselFlow state.",
+      "modes": [],
+      "registered": "2026-05-13"
+    },
+    {
+      "name": "/lense",
+      "scope": "inspection",
+      "description": "Deep file inspection \u2014 structure, logic scan, risk scan, annotated source.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "file_inspector",
+          "action": "Deep annotated read of any KF file"
+        },
+        {
+          "id": "2",
+          "label": "log_analyzer",
+          "action": "Parse kf_maintain.log for patterns"
+        },
+        {
+          "id": "3",
+          "label": "token_auditor",
+          "action": "Analyze audit_log.json blocked tokens"
+        }
+      ],
+      "registered": "2026-05-13"
+    },
+    {
+      "name": "/artifacts",
+      "scope": "inventory",
+      "description": "Artifact inventory, export packing, and diff from last known state.",
+      "modes": [
+        {
+          "id": "1",
+          "label": "inventory",
+          "action": "List all KF artifacts with size, age, hash"
+        },
+        {
+          "id": "2",
+          "label": "export_pack",
+          "action": "Bundle all artifacts into a dated archive"
+        },
+        {
+          "id": "3",
+          "label": "diff_from_last",
+          "action": "Compare current artifacts against last known state"
+        }
+      ],
+      "registered": "2026-05-13"
+    }
+  ]
+}

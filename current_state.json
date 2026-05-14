@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-05-13",
+  "system": "KesselFlow",
+  "author": "RayRock92610",
+  "agents": [
+    "ARES",
+    "FENRIS",
+    "CERBERUS",
+    "INQUISITOR"
+  ],
+  "active_scripts": [
+    "~/kesselflow/scripts/sop_sync.sh",
+    "~/kesselflow/scripts/orchestrator.py",
+    "~/kesselflow/scripts/workflow_tree.json"
+  ],
+  "boneyard_root": "/sdcard/boneyard/KesselFlow/SOPs/",
+  "cron_active": true,
+  "frozen_profiles": [
+    "EXXACT-KF-2.0"
+  ],
+  "invariants_ref": "~/kesselflow/handoff.json"
+}

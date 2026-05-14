@@ -1,0 +1,35 @@
+{
+  "profile": "EXXACT-KF-2.0",
+  "frozen": true,
+  "guard": "NO_POC/EXEC",
+  "review_date": "2027-05-12",
+  "hardware": {
+    "training_tier": {
+      "platform": "DGX/HGX",
+      "gpus": ["H100", "B200"],
+      "fabric": "InfiniBand-first",
+      "fallback": "Ethernet",
+      "precision": "FP64",
+      "checkpoint_store": "NVMe-oF BoneYard"
+    },
+    "inference_tier": {
+      "platform": "rack-optimized",
+      "isolation": ["cgroup", "MIG"],
+      "agents": ["ARES", "FENRIS", "CERBERUS", "INQUISITOR"],
+      "risk_profile": "medium-contention"
+    },
+    "starter_node": {
+      "model": "TensorEX TWS-1940",
+      "cpu": "dual Xeon 6444Y",
+      "gpus": "4x A100 NVLink",
+      "cooling": "liquid",
+      "certified": "NVIDIA Enterprise"
+    },
+    "scale_target": "HGX B300"
+  },
+  "state_anchor": "~/.kessel_state.json",
+  "log_store": "/sdcard/boneyard/KesselFlow/SOPs/",
+  "forensic_log_target": "2TB+",
+  "k_router_ingestable": true,
+  "conflict_resolution": "user-resolves"
+}

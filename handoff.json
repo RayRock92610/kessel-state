@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "session_date": "2026-05-13",
+  "author": "RayRock92610",
+  "system": "KesselFlow / BoneYard",
+  "current_state": {
+    "orchestrator": "~/kesselflow/scripts/orchestrator.py",
+    "sop_sync": "~/kesselflow/scripts/sop_sync.sh",
+    "state_anchor": "~/.kessel_state.json",
+    "boneyard_root": "/sdcard/boneyard/KesselFlow/SOPs/",
+    "claude_md": "~/kesselflow/CLAUDE.md",
+    "agents": [
+      "ARES",
+      "FENRIS",
+      "CERBERUS",
+      "INQUISITOR"
+    ],
+    "cron_active": true,
+    "cron_schedule": "0 3 * * *"
+  },
+  "frozen_profiles": [
+    {
+      "id": "EXXACT-KF-2.0",
+      "file": "~/kesselflow/kessel_state_exxact.json",
+      "guard": "NO_POC/EXEC",
+      "review_date": "2027-05-12",
+      "source": "Perplexity/GPT-5.1 \u2014 verified Claude 2026-05-13"
+    }
+  ],
+  "invariants": [
+    "No /tmp \u2014 use ~/.locks/",
+    "No pkg upgrade \u2014 MongoDB pinned",
+    "No PM2/lsof/ss/fuser",
+    "Logs to ~/kessel_live/logs/ or ~/kesselflow/logs/",
+    "File writes via cat <<'PYEOF' or python3 <<'PYEOF' only",
+    "printf '\\e[?2004l' before any multi-line paste",
+    "Do not merge Donny outputs without explicit user confirmation"
+  ],
+  "closed_loops": [
+    {
+      "id": "LOOP-1",
+      "item": "sop_sync deployed + cron active",
+      "status": "CLOSED"
+    },
+    {
+      "id": "LOOP-2",
+      "item": "~/.kessel_state.json symlinked",
+      "status": "CLOSED"
+    },
+    {
+      "id": "LOOP-3",
+      "item": "EXXACT-KF-2.0 embedded",
+      "status": "CLOSED"
+    }
+  ],
+  "open_priorities": [
+    {
+      "rank": 1,
+      "item": "handoff.json schema",
+      "status": "CLOSED",
+      "artifact": "~/kesselflow/handoff.json"
+    },
+    {
+      "rank": 2,
+      "item": "Extend workflow tree \u2014 sop_sync + orchestrator as BoneYard nodes",
+      "status": "CLOSED",
+      "artifact": "~/kesselflow/scripts/workflow_tree.json"
+    },
+    {
+      "rank": 3,
+      "item": "Test cross-session continuity",
+      "status": "CLOSED",
+      "verified": "2026-05-13 PASS 6/6"
+    },
+    {
+      "rank": 4,
+      "item": "Wire audit_log.json into kessel_learn.py mining loop",
+      "status": "CLOSED",
+      "artifact": "~/kesselflow/kessel_learn_audit.py",
+      "note": "Wire live. audit_log populated on first orchestrator production run."
+    }
+  ],
+  "resume_prompt_file": "~/kesselflow/scripts/resume.txt"
+}
